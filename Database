@@ -1,0 +1,43 @@
+create database HospitalManagement;
+create table Patient(
+email varchar(50) PRIMARY KEY,
+password varchar(30) NOT NULL,
+name varchar(50) NOT NULL,
+address varchar(60) NOT NULL,
+gender varchar(20) NOT NULL
+)
+
+create table MedicalHistory(
+id int PRIMARY KEY,
+date DATA NOT NULL,
+condition varchar(100) NOT NULL,
+surgeries varchar(100) NOT NULL,
+medication varchar(100) NOT NULL
+)
+
+create table Doctor(
+email varchar(50) PRIMARY KEY,
+password varchar(30) NOT NULL,
+name varchar(30) NOT NULL,
+gender varchar(20) NOT NULL
+)
+
+create table Appointment(
+id int PRIMARY KEY,
+date DATE NOT NULL,
+startime TIME NOT NULL,
+endtime TIME NOT NULL,
+status varchar(15) NOT NULL
+)
+
+create table PatientsAttendAppointments(
+patient varchar(50) NOT NULL,
+appt int NOT NULL,
+concerns varchar(40) NOT NULL,
+symptoms varchar(40) NOT NULL,
+FOREIGN KEY (patient) REFERENCES patient (email) ON DELETE CASCADE,
+FOREIGN KEY (appt) REFERENCES Appointment (id) ON DELETE CASCADE,
+PRIMARY KEY (patient, appt)
+);
+
+ 
